@@ -75,22 +75,12 @@ function! s:flash(patterns, group) abort
 endfunction
 
 function! s:clear(num)
-  function! Clear() closure
+  function! s:_clear() closure
     for i in range(a:num)
-      call s:Highlight.clear('ShinyFlash' . i)
       call s:Highlight.clear('ShinyFlash' . i)
     endfor
     call s:Highlight.clear('ShinyCursor')
   endfunction
 
-  let timer = timer_start(1000, { -> Clear() })
-
-  function! KeyListener() closure
-    if getchar(1)
-      call timer_stop(timer)
-      " call Clear()
-    endif
-  endfunction
-
-  let key_listener = timer_start(100, { -> KeyListener() }, { 'repeat': -1 })
+  let timer = timer_start(800, { -> s:_clear() })
 endfunction

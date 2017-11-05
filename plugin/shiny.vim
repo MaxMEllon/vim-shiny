@@ -7,6 +7,6 @@ augroup vim-pikapika
 augroup END
 
 nnoremap p  :<C-u>call shiny#flash#p()<CR>
-nnoremap <Plug>(shiny-P)  :<C-u>call shiny#flash#P()<CR>
-nnoremap <Plug>(shiny-gp) :<C-u>call shiny#flash#gp()<CR>
-nnoremap <Plug>(shiny-gP) :<C-u>call shiny#flash#gP()<CR>
+nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#flash#P()<CR>
+nnoremap <silent> <Plug>(shiny-gp) :<C-u>call shiny#flash#gp()<CR>
+nnoremap <silent> <Plug>(shiny-gP) :<C-u>call shiny#flash#gP()<CR>
