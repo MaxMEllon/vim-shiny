@@ -2,6 +2,10 @@
 
 A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://github.com/t9md/atom-vim-mode-plus).
 
+![Demo movie](./.github/demo.gif)
+
+> with vim-operator-flashy
+
 ## Inspired
 
 - [vim-operator-flashy](https://github.com/haya14busa/vim-operator-flashy)
