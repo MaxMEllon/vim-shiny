@@ -14,10 +14,10 @@ A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://githu
 ## TODO
 
 - paste `*1`
-  - [x] p  `<Plug>(pika-pika-p)`
-  - [x] P  `<Plug>(pika-pika-P)`
-  - [x] gp `<Plug>(pika-pika-gp)`
-  - [x] gP `<Plug>(pika-pika-gP)`
+  - [x] p  `<Plug>(shiny-p)`
+  - [x] P  `<Plug>(shiny-P)`
+  - [x] gp `<Plug>(shiny-gp)`
+  - [x] gP `<Plug>(shiny-gP)`
 
 - undo `*2`
   - [ ] u
@@ -25,8 +25,6 @@ A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://githu
 
 > `*2` : Not highlight when decrease line from prev state.
 
-- [ ] blockwise visual
-- [ ] undo
 - [ ] support legacy vim (for no lambda, no timer user)
 
 - [ ] dot repeat
