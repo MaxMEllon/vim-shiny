@@ -1,0 +1,5 @@
+runner:
+  vint:
+    cmd: vint autoload/shiny.vim plugin/
+    errorformat:
+      - "%f:%l:%c: %m"
