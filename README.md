@@ -68,7 +68,7 @@ let g:vim_shiny_window_change = 1
   - [ ] review dog
 
 - configureable
-  - [ ] highlight group
+  - [x] highlight group
   - [ ] highlight time
 
 - [ ] document
