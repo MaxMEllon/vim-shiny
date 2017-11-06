@@ -39,3 +39,7 @@ function! shiny#window#flash() abort
     endif
   endfor
 endfunction
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+" vim: fdm=marker:et:ts=2:sw=2:sts=2

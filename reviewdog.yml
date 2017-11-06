@@ -1,5 +1,5 @@
 runner:
   vint:
-    cmd: vint autoload/shiny.vim plugin/
+    cmd: vint $(git ls-files | grep -v vital | grep '\.vim')
     errorformat:
       - "%f:%l:%c: %m"
