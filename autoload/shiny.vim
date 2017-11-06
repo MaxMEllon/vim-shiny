@@ -44,14 +44,17 @@ endfunction
 function! s:generate_patterns() abort
   let s = [getpos("'[")[1], getpos("'[")[2]]
   let e = [getpos("']")[1], getpos("']")[2]]
+
+  if s:mode ==# 'V'
+    return [printf('\%%%dl\_.*\%%%dl', s[0], e[0])]
+  endif
+
   let patterns = []
   let k = 0
   for i in range(e[0] - s[0] + 1)
     let line = s[0] + i
     if s:mode ==# 'v'
       let p = s:generate_matcher_for_visual(line, k, s, e)
-    elseif s:mode ==# 'V'
-      return [printf('\%%%dl\_.*\%%%dl', s[0], e[0])]
     else
       let p = printf('\%%%dl\%%%dv\_.*\%%%dl\%%%dv', line, s[1], line, e[1] + 1)
     endif
