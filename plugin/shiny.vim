@@ -9,9 +9,13 @@ highlight ShinyPaste  ctermbg=22
 highlight ShinyCursor ctermbg=15
 highlight ShinyUndo   ctermbg=88
 
-augroup WindShine
-  autocmd WinEnter * call shiny#window#flash()
-augroup END
+let s:vim_shiny_window_change = get(g:, 'vim_shiny_window_change', 0)
+
+if s:vim_shiny_window_change
+  augroup WindShine
+    autocmd WinEnter * call shiny#window#flash()
+  augroup END
+endif
 
 nnoremap <silent> <Plug>(shiny-p)  :<C-u>call shiny#p()<CR>
 nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#P()<CR>
