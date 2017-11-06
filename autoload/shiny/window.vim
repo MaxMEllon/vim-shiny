@@ -3,16 +3,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 let s:colorcolumn = &colorcolumn
+let s:vim_shiny_hi_window_change = get(g:, 'vim_shiny_hi_window_change', 'WindowChange')
 
-function! s:save_hi(group) abort
-  silent redir => hi
-    exec 'hi ' . a:group
-  redir END
-  let hi = substitute(hi, "[\n|\r]*", '', 'g')
-  return  substitute(hi, 'xxx', '', 'g')
+function! s:initialize() abort
+  highlight default WindowChange ctermbg=236 guibg=#333333
 endfunction
 
-let s:hi_ColorColumn = s:save_hi('ColorColumn')
+call s:initialize()
 
 function! s:restore_hi(hi) abort
   exec 'hi! ' . a:hi
@@ -21,7 +18,7 @@ endfunction
 function! s:clear() abort
   function! s:_clear() closure
     let &colorcolumn = s:colorcolumn
-    call s:restore_hi(s:hi_ColorColumn)
+    highlight! link ColorColumn NONE
   endfunction
 
   let timer = timer_start(300, { -> s:_clear() })
@@ -33,7 +30,7 @@ function! shiny#window#flash() abort
     if i == winnr()
       let l:width = 256
       let l:range = join(range(1, l:width), ',')
-      highlight! ColorColumn ctermbg=235
+      exec 'highlight! link ColorColumn ' . s:vim_shiny_hi_window_change
       call setwinvar(i, '&colorcolumn', range)
       call s:clear()
     endif

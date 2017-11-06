@@ -5,10 +5,6 @@ endif
 
 let g:vim_shiny_loaded = 1
 
-highlight ShinyPaste  ctermbg=22
-highlight ShinyCursor ctermbg=15
-highlight ShinyUndo   ctermbg=88
-
 let s:vim_shiny_window_change = get(g:, 'vim_shiny_window_change', 0)
 
 if s:vim_shiny_window_change

@@ -5,20 +5,28 @@ set cpo&vim
 let s:V = vital#shiny#of()
 let s:Highlight = s:V.import('Coaster.Highlight')
 
+let s:vim_shiny_hi_paste = get(g:, 'vim_shiny_hi_paste', 'Shiny')
+
+function! s:initialize()
+  highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#13354A
+endfunction
+
+call s:initialize()
+
 function! shiny#p(...) abort
-  call s:flash_and_paste('p', 'ShinyPaste')
+  call s:flash_and_paste('p')
 endfunction
 
 function! shiny#gp() abort
-  call s:flash_and_paste('gp', 'ShinyPaste')
+  call s:flash_and_paste('gp')
 endfunction
 
 function! shiny#P() abort
-  call s:flash_and_paste('P', 'ShinyPaste')
+  call s:flash_and_paste('P')
 endfunction
 
 function! shiny#gP() abort
-  call s:flash_and_paste('gP', 'ShinyPaste')
+  call s:flash_and_paste('gP')
 endfunction
 
 function! s:generate_matcher_for_visual(line, index, start_loc, end_loc) abort
@@ -57,10 +65,10 @@ function! s:generate_patterns() abort
   return patterns
 endfunction
 
-function! s:flash_and_paste(target, group) abort
+function! s:flash_and_paste(target) abort
   exec "normal! " . a:target
   let patterns = s:generate_patterns()
-  call s:flash(patterns, a:group)
+  call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
 
 function! s:flash(patterns, group) abort
@@ -69,7 +77,6 @@ function! s:flash(patterns, group) abort
     call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
     let i += 1
   endfor
-  call s:Highlight.highlight('ShinyCursor', 'ShinyCursor', '\%#', 1)
   redraw
   call s:clear(i)
 endfunction
@@ -79,7 +86,6 @@ function! s:clear(num) abort
     for i in range(a:num)
       call s:Highlight.clear('ShinyFlash' . i)
     endfor
-    call s:Highlight.clear('ShinyCursor')
   endfunction
 
   let timer = timer_start(800, { -> s:_clear() })
