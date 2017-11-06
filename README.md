@@ -11,6 +11,17 @@ A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://githu
 - [vim-operator-flashy](https://github.com/haya14busa/vim-operator-flashy)
 - [atom-vim-mode-plus](https://github.com/t9md/atom-vim-mode-plus)
 
+Special Thanks!
+
+## Usage
+
+```vim
+nmap p  <Plug>(shiny-p)
+nmap P  <Plug>(shiny-P)
+nmap gp <Plug>(shiny-gp)
+nmap gP <Plug>(shiny-gP)
+```
+
 ## TODO
 
 - paste `*1`
@@ -25,7 +36,7 @@ A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://githu
 
 > `*2` : Not highlight when decrease line from prev state.
 
-- [ ] support legacy vim (for no lambda, no timer user)
+- [ ] support legacy vim (for no lambda, no timer)
 
 - [ ] dot repeat
 
