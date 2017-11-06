@@ -10,10 +10,13 @@ highligh  FlashyCursor ctermbg=15
 highlight FlashyUndo  ctermbg=88
 
 augroup vim-pikapika
-  autocmd CursorMoved * call shiny#flash#update_last_visual_mode_type()
+  autocmd CursorMoved * call shiny#update_last_visual_mode_type()
 augroup END
 
-nnoremap <silent> <Plug>(shiny-p)  :<C-u>call shiny#flash#p()<CR>
-nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#flash#P()<CR>
-nnoremap <silent> <Plug>(shiny-gp) :<C-u>call shiny#flash#gp()<CR>
-nnoremap <silent> <Plug>(shiny-gP) :<C-u>call shiny#flash#gP()<CR>
+nnoremap <silent> <Plug>(shiny-p)  :<C-u>call shiny#p()<CR>
+nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#P()<CR>
+nnoremap <silent> <Plug>(shiny-gp) :<C-u>call shiny#gp()<CR>
+nnoremap <silent> <Plug>(shiny-gP) :<C-u>call shiny#gP()<CR>
+
+call repeat#set("\<Plug>(shiny-p)", 3)
+
