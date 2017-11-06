@@ -7,7 +7,7 @@ let s:Highlight = s:V.import('Coaster.Highlight')
 
 let s:vim_shiny_hi_paste = get(g:, 'vim_shiny_hi_paste', 'Shiny')
 
-function! s:initialize()
+function! s:initialize() abort
   highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#13354A
 endfunction
 
