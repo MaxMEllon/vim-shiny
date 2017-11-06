@@ -73,11 +73,18 @@ endfunction
 
 function! s:flash(patterns, group) abort
   let i = 0
-  for p in a:patterns
-    call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
-    let i += 1
-  endfor
-  redraw
+  function! s:_flash() closure
+    for k in [28, 70, 76, 76, 70, 28]
+      exe 'highlight! Shiny term=bold ctermbg=' . k . 'gui=bold guibg=#13354A'
+      for p in a:patterns
+        call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
+        let i += 1
+        redraw
+      endfor
+    endfor
+  endfunction
+  " redraw
+  call s:_flash()
   call s:clear(i)
 endfunction
 
@@ -88,7 +95,7 @@ function! s:clear(num) abort
     endfor
   endfunction
 
-  let timer = timer_start(800, { -> s:_clear() })
+  let timer = timer_start(0, { -> s:_clear() })
 endfunction
 
 let &cpo = s:save_cpo
