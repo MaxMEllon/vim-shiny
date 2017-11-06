@@ -7,9 +7,15 @@
 
 A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://github.com/t9md/atom-vim-mode-plus).
 
+- paste yank
+
 ![Demo movie](./.github/demo.gif)
 
 > with vim-operator-flashy
+
+- change window
+
+![Demo movie](./.github/demo_win_change.gif)
 
 ## Inspired
 
