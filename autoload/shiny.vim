@@ -21,7 +21,7 @@ function! shiny#gP() abort
   call s:flash_and_paste('gP', 'ShinyPaste')
 endfunction
 
-function! s:generate_matcher_for_visual(line, index, start_loc, end_loc)
+function! s:generate_matcher_for_visual(line, index, start_loc, end_loc) abort
   if a:index == 0
     return printf('\%%%dl\%%%dv\_.*\%%%dl', a:line, a:start_loc[1], a:line)
   endif
