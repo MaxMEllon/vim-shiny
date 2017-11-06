@@ -5,8 +5,6 @@ set cpo&vim
 let s:V = vital#shiny#of()
 let s:Highlight = s:V.import('Coaster.Highlight')
 
-let s:mode = ''
-
 function! shiny#p(...) abort
   call s:flash_and_paste('p', 'FlashyPaste')
 endfunction
@@ -21,12 +19,6 @@ endfunction
 
 function! shiny#gP() abort
   call s:flash_and_paste('gP', 'FlashyPaste')
-endfunction
-
-function! shiny#update_last_visual_mode_type()
-  if mode() =~# "^[vV\<C-v>]"
-    let s:mode = mode()
-  endif
 endfunction
 
 function! s:generate_matcher_for_visual(line, index, start_loc, end_loc)
@@ -44,8 +36,9 @@ endfunction
 function! s:generate_patterns() abort
   let s = [getpos("'[")[1], getpos("'[")[2]]
   let e = [getpos("']")[1], getpos("']")[2]]
+  let mode = getregtype()
 
-  if s:mode ==# 'V'
+  if mode ==# 'V'
     return [printf('\%%%dl\_.*\%%%dl', s[0], e[0])]
   endif
 
@@ -53,7 +46,7 @@ function! s:generate_patterns() abort
   let k = 0
   for i in range(e[0] - s[0] + 1)
     let line = s[0] + i
-    if s:mode ==# 'v'
+    if mode ==# 'v'
       let p = s:generate_matcher_for_visual(line, k, s, e)
     else
       let p = printf('\%%%dl\%%%dv\_.*\%%%dl\%%%dv', line, s[1], line, e[1] + 1)
