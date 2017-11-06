@@ -34,8 +34,8 @@ function! s:generate_matcher_for_visual(line, index, start_loc, end_loc)
 endfunction
 
 function! s:generate_patterns() abort
-  let s = [getpos("'[")[1], getpos("'[")[2]]
-  let e = [getpos("']")[1], getpos("']")[2]]
+  let s = getpos("'[")[1:2]
+  let e = getpos("']")[1:2]
   let mode = getregtype()
 
   if mode ==# 'V'
@@ -69,7 +69,7 @@ function! s:flash(patterns, group) abort
     call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
     let i += 1
   endfor
-  call s:Highlight.highlight('ShinyCursor', 'flashycursor', '\%#', 1)
+  call s:Highlight.highlight('ShinyCursor', 'ShinyCursor', '\%#', 1)
   redraw
   call s:clear(i)
 endfunction
