@@ -8,7 +8,7 @@ let g:vim_shiny_loaded = 1
 let s:vim_shiny_window_change = get(g:, 'vim_shiny_window_change', 0)
 
 if s:vim_shiny_window_change
-  augroup WindShine
+  augroup plugin-vim-shiny
     autocmd WinEnter * call shiny#window#flash()
   augroup END
 endif
