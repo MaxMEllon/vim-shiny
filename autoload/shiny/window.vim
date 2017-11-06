@@ -5,7 +5,7 @@ set cpo&vim
 let s:colorcolumn = &colorcolumn
 
 function! s:save_hi(group) abort
-  redir => hi
+  silent redir => hi
     exec 'hi ' . a:group
   redir END
   let hi = substitute(hi, "[\n|\r]*", '', 'g')
