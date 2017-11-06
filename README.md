@@ -46,6 +46,10 @@ nmap gP <Plug>(shiny-gP)
     - [ ] mac
     - [ ] linux
 
+- lint
+  - [ ] vint
+  - [ ] review dog
+
 - configureable
   - [ ] highlight group
   - [ ] highlight time
