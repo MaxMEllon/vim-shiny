@@ -33,6 +33,12 @@ nmap gp <Plug>(shiny-gp)
 nmap gP <Plug>(shiny-gP)
 ```
 
+if you want to flash when change window
+
+```vim
+let g:vim_shiny_window_change = 1
+```
+
 ## TODO
 
 - paste
