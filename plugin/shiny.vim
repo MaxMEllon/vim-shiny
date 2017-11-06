@@ -5,9 +5,9 @@ endif
 
 let g:vim_shiny_loaded = 1
 
-highlight FlashyPaste ctermbg=22
-highligh  FlashyCursor ctermbg=15
-highlight FlashyUndo  ctermbg=88
+highlight ShinyPaste  ctermbg=22
+highlight ShinyCursor ctermbg=15
+highlight ShinyUndo   ctermbg=88
 
 nnoremap <silent> <Plug>(shiny-p)  :<C-u>call shiny#p()<CR>
 nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#P()<CR>

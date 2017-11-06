@@ -6,19 +6,19 @@ let s:V = vital#shiny#of()
 let s:Highlight = s:V.import('Coaster.Highlight')
 
 function! shiny#p(...) abort
-  call s:flash_and_paste('p', 'FlashyPaste')
+  call s:flash_and_paste('p', 'ShinyPaste')
 endfunction
 
 function! shiny#gp() abort
-  call s:flash_and_paste('gp', 'FlashyPaste')
+  call s:flash_and_paste('gp', 'ShinyPaste')
 endfunction
 
 function! shiny#P() abort
-  call s:flash_and_paste('P', 'FlashyPaste')
+  call s:flash_and_paste('P', 'ShinyPaste')
 endfunction
 
 function! shiny#gP() abort
-  call s:flash_and_paste('gP', 'FlashyPaste')
+  call s:flash_and_paste('gP', 'ShinyPaste')
 endfunction
 
 function! s:generate_matcher_for_visual(line, index, start_loc, end_loc)
