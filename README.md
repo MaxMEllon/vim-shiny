@@ -3,7 +3,7 @@
 [![CircleCI](https://img.shields.io/circleci/project/github/MaxMEllon/vim-shiny/master.svg?style=flat-square&label=Circle%20CI)](https://circleci.com/gh/MaxMEllon/vim-shiny)
 [![Support Vim 8.0.0039 or above](https://img.shields.io/badge/support-Vim%208.0.0039%20or%20above-yellowgreen.svg?style=flat-square)](github.com/vim/vim/releases/tag/v8.0.0039)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.txt)
-[![Doc](https://img.shields.io/badge/doc%20-%3Ah%20vim-shiny-red.svg?style=flat-square)](./doc/vim-shiny.txt)
+[![Doc](https://img.shields.io/badge/doc%20-%3Ah%20vim--shiny-red.svg?style=flat-square)](./doc/vim-shiny.txt)
 
 A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://github.com/t9md/atom-vim-mode-plus).
 
