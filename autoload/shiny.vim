@@ -66,7 +66,7 @@ function! s:generate_patterns() abort
 endfunction
 
 function! s:flash_and_paste(target) abort
-  exec "normal! " . a:target
+  exec 'normal! "' . v:register . a:target
   let patterns = s:generate_patterns()
   call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
