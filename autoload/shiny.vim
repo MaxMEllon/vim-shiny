@@ -8,7 +8,7 @@ let s:Highlight = s:V.import('Coaster.Highlight')
 let s:vim_shiny_hi_paste = get(g:, 'vim_shiny_hi_paste', 'Shiny')
 
 function! s:initialize() abort
-  highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#13354A
+  highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#008000
 endfunction
 
 call s:initialize()
@@ -73,18 +73,10 @@ endfunction
 
 function! s:flash(patterns, group) abort
   let i = 0
-  function! s:_flash() closure
-    for k in [28, 70, 76, 76, 70, 28]
-      exe 'highlight! Shiny term=bold ctermbg=' . k . 'gui=bold guibg=#13354A'
-      for p in a:patterns
-        call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
-        let i += 1
-        redraw
-      endfor
-    endfor
-  endfunction
-  " redraw
-  call s:_flash()
+  for p in a:patterns
+    call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
+    let i += 1
+  endfor
   call s:clear(i)
 endfunction
 
@@ -95,7 +87,7 @@ function! s:clear(num) abort
     endfor
   endfunction
 
-  let timer = timer_start(0, { -> s:_clear() })
+  let timer = timer_start(800, { -> s:_clear() })
 endfunction
 
 let &cpo = s:save_cpo

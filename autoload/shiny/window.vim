@@ -3,22 +3,17 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 let s:colorcolumn = &colorcolumn
-let s:vim_shiny_hi_window_change = get(g:, 'vim_shiny_hi_window_change', 'WindowChange')
-
-function! s:initialize() abort
-  highlight default WindowChange ctermbg=236 guibg=#333333
-endfunction
 
 let s:colors = {
       \  'light': {
-      \    'cterm': [250, 251, 252, 253, 255]
+      \    'cterm': [248, 251, 252, 253, 255],
+      \    'gui': ['#a8a8a8', '#c6c6c6', '#eeeeee', '#c6c6c6', '#a8a8a8'],
       \  },
       \  'dark': {
-      \    'cterm': [243, 239, 238, 237, 236]
+      \    'cterm': [244, 242, 238, 237, 236],
+      \    'gui': ['#a8a8a8', '#6c6c6c', '#444444', '#3a3a3a', '#303030'],
       \  },
       \}
-
-call s:initialize()
 
 function! s:save_hi(hi) abort
   silent redir => hi
@@ -42,21 +37,22 @@ endfunction
 function! shiny#window#flash() abort
   for i in range(1, tabpagewinnr(tabpagenr(), '$'))
     let range = ''
-    if i == winnr()
-      let l:width = 256
-      let l:range = join(range(1, l:width), ',')
-      let bg = &background == 'dark' ? 'dark' : 'light'
-      call setwinvar(i, '&colorcolumn', range)
-      function! s:_flash() closure
-        for i in s:colors[bg].cterm
-          exec 'highlight! ColorColumn ctermbg=' . i
-          redraw
-          sleep 10m
-        endfor
-        call s:clear()
-      endfunction
-      call timer_start(10, { -> s:_flash() })
+    if i != winnr()
+      continue
     endif
+    let l:width = 256
+    let l:range = join(range(1, l:width), ',')
+    let bg = &background == 'dark' ? 'dark' : 'light'
+    call setwinvar(i, '&colorcolumn', range)
+    function! s:_flash() closure
+      for i in range(5)
+        exec 'highlight! ColorColumn ctermbg=' .  s:colors[bg]['cterm'][i] . ' guibg=' . s:colors[bg]['gui'][i]
+        redraw
+        sleep 50m
+      endfor
+      call s:clear()
+    endfunction
+    call timer_start(0, { -> s:_flash() })
   endfor
 endfunction
 
