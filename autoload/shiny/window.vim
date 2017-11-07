@@ -40,6 +40,7 @@ function! shiny#window#flash() abort
     if i != winnr()
       continue
     endif
+
     let l:width = 256
     let l:range = join(range(1, l:width), ',')
     let bg = &background == 'dark' ? 'dark' : 'light'

@@ -8,7 +8,7 @@ let s:Highlight = s:V.import('Coaster.Highlight')
 let s:vim_shiny_hi_paste = get(g:, 'vim_shiny_hi_paste', 'Shiny')
 
 function! s:initialize() abort
-  highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#008000
+  highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#13354A
 endfunction
 
 call s:initialize()
@@ -66,7 +66,7 @@ function! s:generate_patterns() abort
 endfunction
 
 function! s:flash_and_paste(target) abort
-  exec "normal! " . a:target
+  exec 'normal! "' . v:register . a:target
   let patterns = s:generate_patterns()
   call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
@@ -77,6 +77,7 @@ function! s:flash(patterns, group) abort
     call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
     let i += 1
   endfor
+  redraw
   call s:clear(i)
 endfunction
 
