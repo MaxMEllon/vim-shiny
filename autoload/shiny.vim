@@ -6,6 +6,17 @@ let s:V = vital#shiny#of()
 let s:Highlight = s:V.import('Coaster.Highlight')
 let s:vim_shiny_hi_paste = get(g:, 'vim_shiny_hi_paste', 'Shiny')
 
+let s:colors = {
+      \  'light': {
+      \    'cterm': [248, 251, 252, 253, 255],
+      \    'gui': ['#f8f8f8', '#c6c6c6', '#a8a8a8', '#c6c6c6', '#f8f8f8'],
+      \  },
+      \  'dark': {
+      \    'cterm':  [22, 28, 34, 28, 22],
+      \    'gui': ['#a8a8a8', '#6c6c6c', '#444444', '#a8a8a8', '#303030'],
+      \  },
+      \}
+
 function! s:initialize() abort
   highlight default Shiny term=bold ctermbg=22 gui=bold guibg=#13354A
 endfunction
@@ -77,14 +88,23 @@ function! s:flash_and_paste(target) abort
   call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
 
-function! s:flash(patterns, group) abort
-  let i = 0
-  for p in a:patterns
-    call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
-    let i += 1
+function! s:_flash(patterns, group) abort
+  let bg = &background ==# 'dark' ? 'dark' : 'light'
+  for k in range(5)
+    exe 'hi! ' . a:group . ' ctermbg=' . s:colors[bg]['cterm'][k] . ' guibg=' . s:colors[bg]['gui'][k]
+    let i = 0
+    for p in a:patterns
+      call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
+      let i += 1
+    endfor
+    sleep 3m
+    redraw
   endfor
-  redraw
   call s:clear(i)
+endfunction
+
+function! s:flash(patterns, group) abort
+  call timer_start(0, { -> s:_flash(a:patterns, a:group) })
 endfunction
 
 function! s:clear(num) abort
@@ -94,7 +114,7 @@ function! s:clear(num) abort
     endfor
   endfunction
 
-  let timer = timer_start(800, { -> s:_clear() })
+  call timer_start(0, { -> s:_clear() })
 endfunction
 
 let &cpo = s:save_cpo
