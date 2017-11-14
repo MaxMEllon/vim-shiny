@@ -10,8 +10,11 @@ A plugin goal is effective highlight, like as [atom-vim-mode-plus](https://githu
 - paste yank
 
 ![Demo movie](./.github/demo.gif)
-
 > with vim-operator-flashy
+
+- if enabled `termguicolors` or `gui_running`
+
+![Demo movie](https://user-images.githubusercontent.com/9594376/32803036-8fbb49a2-c9c5-11e7-82e7-af5e79cbe925.gif)
 
 - change window
 
