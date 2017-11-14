@@ -18,20 +18,20 @@ endfunction
 
 call s:initialize()
 
-function! shiny#p(...) abort
-  call s:flash_and_paste('p')
+function! shiny#p(...) abort range
+  call s:flash_and_paste('p', a:lastline - a:firstline + 1)
 endfunction
 
-function! shiny#gp() abort
-  call s:flash_and_paste('gp')
+function! shiny#gp(...) abort range
+  call s:flash_and_paste('gp', a:lastline - a:firstline + 1)
 endfunction
 
-function! shiny#P() abort
-  call s:flash_and_paste('P')
+function! shiny#P(...) abort range
+  call s:flash_and_paste('P', a:lastline - a:firstline + 1)
 endfunction
 
-function! shiny#gP() abort
-  call s:flash_and_paste('gP')
+function! shiny#gP(...) abort range
+  call s:flash_and_paste('gP', a:lastline - a:firstline + 1)
 endfunction
 
 function! s:generate_matcher_for_visual(start_loc, end_loc) abort
@@ -56,13 +56,13 @@ function! s:generate_matcher_for_visual_block(start_loc, end_loc) abort
   return patterns
 endfunction
 
-function! s:generate_patterns() abort
+function! s:generate_patterns(count) abort
   let s = getpos("'[")[1:2]
   let e = getpos("']")[1:2]
   let mode = getregtype(v:register)
   let length = len(split(getreg(v:register), "[\n|\r]"))
 
-  if length == 1
+  if length == 1 && a:count == 1
     return s:generate_matcher_for_visual_block(s, e)
   endif
 
@@ -77,9 +77,9 @@ function! s:generate_patterns() abort
   return s:generate_matcher_for_visual_block(s, e)
 endfunction
 
-function! s:flash_and_paste(target) abort
-  exec 'normal! "' . v:register . a:target
-  let patterns = s:generate_patterns()
+function! s:flash_and_paste(target, count) abort
+  exec 'normal! "' . v:register . a:count . a:target
+  let patterns = s:generate_patterns(a:count)
   call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
 
