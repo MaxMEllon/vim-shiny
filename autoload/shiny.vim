@@ -86,6 +86,9 @@ endfunction
 function! s:flash(patterns, group) abort
   let i = 0
   for p in a:patterns
+    if getchar(1)
+      break
+    endif
     call s:Highlight.highlight('ShinyFlash' . i, a:group, p, 1)
     let i += 1
   endfor
@@ -98,6 +101,9 @@ function! s:_flash_fade(patterns, group) abort
   let c = s:colors[bg]
   let duration = 100 / len(c)
   for k in range(5)
+    if getchar(1)
+      break
+    endif
     exe 'hi! ' . a:group .' guibg=' . c[k]
     let i = 0
     for p in a:patterns
@@ -119,13 +125,9 @@ function! s:flash(patterns, group) abort
 endfunction
 
 function! s:clear(num) abort
-  function! s:_clear() closure
-    for i in range(a:num)
-      call s:Highlight.clear('ShinyFlash' . i)
-    endfor
-  endfunction
-
-  call timer_start(0, { -> s:_clear() })
+  for i in range(a:num)
+    call s:Highlight.clear('ShinyFlash' . i)
+  endfor
 endfunction
 
 let &cpo = s:save_cpo
