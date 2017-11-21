@@ -13,7 +13,7 @@ if s:vim_shiny_window_change
   augroup END
 endif
 
-nnoremap <silent> <Plug>(shiny-p)  :<C-u>call shiny#p()<CR>
-nnoremap <silent> <Plug>(shiny-P)  :<C-u>call shiny#P()<CR>
-nnoremap <silent> <Plug>(shiny-gp) :<C-u>call shiny#gp()<CR>
-nnoremap <silent> <Plug>(shiny-gP) :<C-u>call shiny#gP()<CR>
+nnoremap <silent> <Plug>(shiny-p)  :call shiny#p()<CR>
+nnoremap <silent> <Plug>(shiny-P)  :call shiny#P()<CR>
+nnoremap <silent> <Plug>(shiny-gp) :call shiny#gp()<CR>
+nnoremap <silent> <Plug>(shiny-gP) :call shiny#gP()<CR>
