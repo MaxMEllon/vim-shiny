@@ -83,7 +83,7 @@ function! s:flash_and_paste(target, count) abort
   call s:flash(patterns, s:vim_shiny_hi_paste)
 endfunction
 
-function! s:flash(patterns, group) abort
+function! s:_flash(patterns, group) abort
   let i = 0
   for p in a:patterns
     if getchar(1)
